@@ -9,9 +9,9 @@ public class ballController : MonoBehaviour
     public TMP_Text highScoreText;
     public GameObject tipText;
     public AudioSource swish;
+    public float timer;
 
     private int scoreCount;
-    private float timer;
     private string highScore = "highScore";
     private Vector3 startPos;
 
@@ -25,7 +25,7 @@ public class ballController : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
+        timer -= Time.deltaTime;
         TimeSpan clock = TimeSpan.FromSeconds(timer);
         timerText.SetText(clock.ToString("mm':'ss"));
 

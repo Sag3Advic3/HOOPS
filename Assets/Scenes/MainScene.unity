@@ -919,6 +919,7 @@ MonoBehaviour:
   highScoreText: {fileID: 1244461126}
   tipText: {fileID: 1559310119}
   swish: {fileID: 2019390419}
+  timer: 180
 --- !u!1 &692816482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,12 +1037,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 39cdb67551e295b4eb562c1180c6b15a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.68461895
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 39cdb67551e295b4eb562c1180c6b15a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.68461895
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 39cdb67551e295b4eb562c1180c6b15a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.68461895
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 39cdb67551e295b4eb562c1180c6b15a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.4367616
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39cdb67551e295b4eb562c1180c6b15a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39cdb67551e295b4eb562c1180c6b15a, type: 3}
       propertyPath: m_LocalPosition.z
