@@ -11,25 +11,17 @@ public class ballController : MonoBehaviour
 
     private int scoreCount;
     private string highScore = "highScore";
-    private Vector3 startPos;
     private bool isFalling;
 
     void Start()
     {
         scoreCount = 0;
-        startPos = transform.position;
         if(PlayerPrefs.HasKey(highScore)) highScoreText.SetText(PlayerPrefs.GetInt(highScore).ToString());
     }
 
     void Update()
     {
         isFalling = GetComponent<Rigidbody>().angularVelocity.y < 0 ? true : false;
-
-        //press mouse right click to reset ball position to start
-        if (Input.GetMouseButtonDown(1))
-        {
-            transform.position = startPos;
-        }
     }
 
     private void OnTriggerEnter(Collider collision)

@@ -21,6 +21,7 @@ public class playerController : MonoBehaviour
     private float inputY;
     private bool isPaused;
     private bool isGameOver;
+    private Vector3 ballStartPos;
 
     private bool isHoldingBall = false;
 
@@ -34,6 +35,7 @@ public class playerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         basketballRB = ball.GetComponent<Rigidbody>();
+        ballStartPos = ball.position;
         isPaused = true;
         isGameOver = false;
         pauseMenu.gameObject.SetActive(false);
@@ -118,6 +120,13 @@ public class playerController : MonoBehaviour
             isHoldingBall = false;
             basketballRB.freezeRotation = false;
             basketballRB.linearVelocity = playerCam.forward * throwingSpeed * Time.deltaTime;
+        }
+
+        //press mouse right click to put ball in hand
+        if (Input.GetMouseButtonDown(1))
+        {
+            isHoldingBall = true;
+            basketballRB.freezeRotation = true;
         }
 
         //press space to pause the game
