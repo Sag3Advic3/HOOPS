@@ -13,11 +13,13 @@ public class ballController : MonoBehaviour
     private int scoreCount;
     private float timer;
     private string highScore = "highScore";
+    private Vector3 startPos;
 
     void Start()
     {
         scoreCount = 0;
         tipText.SetActive(false);
+        startPos = transform.position;
         if(PlayerPrefs.HasKey(highScore)) highScoreText.SetText(PlayerPrefs.GetInt(highScore).ToString());
     }
 
@@ -27,8 +29,13 @@ public class ballController : MonoBehaviour
         TimeSpan clock = TimeSpan.FromSeconds(timer);
         timerText.SetText(clock.ToString("mm':'ss"));
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            transform.position = startPos;
+        }
+
         //Show tip after 15 seconds
-        if(clock.TotalSeconds > 15)
+        if (clock.TotalSeconds > 15)
         {
             tipText.SetActive(true);
         }
