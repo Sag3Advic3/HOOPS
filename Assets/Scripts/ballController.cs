@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using TMPro;
 
 public class ballController : MonoBehaviour
@@ -8,6 +7,7 @@ public class ballController : MonoBehaviour
     public TMP_Text scorePauseText;
     public TMP_Text highScoreText;
     public AudioSource swish;
+    public GameObject scorePoint;
 
     private int scoreCount;
     private string highScore = "highScore";
@@ -21,14 +21,14 @@ public class ballController : MonoBehaviour
 
     void Update()
     {
-        isFalling = GetComponent<Rigidbody>().angularVelocity.y < 0 ? true : false;
+        isFalling = GetComponent<Rigidbody>().linearVelocity.y < 0 ? true : false;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         //when colliding with the score trigger point and is falling, increase score and check high score value
         //isFalling is used so the player cannot score from the underside of the hoop
-        if (collision.gameObject.tag == "score" && isFalling)
+        if (collision.gameObject == scorePoint && isFalling)
         {
             scoreCount++;
             scoreText.SetText(scoreCount.ToString());

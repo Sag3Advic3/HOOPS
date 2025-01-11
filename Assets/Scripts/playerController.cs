@@ -119,7 +119,7 @@ public class playerController : MonoBehaviour
         {
             isHoldingBall = false;
             basketballRB.freezeRotation = false;
-            basketballRB.linearVelocity = playerCam.forward * throwingSpeed * Time.deltaTime;
+            basketballRB.linearVelocity = playerCam.forward * throwingSpeed;
         }
 
         //press mouse right click to put ball in hand
@@ -132,14 +132,14 @@ public class playerController : MonoBehaviour
         //press space to pause the game
         if (Input.GetKeyDown(KeyCode.Space) && !isGameOver)
         {
-            if (isPaused)
-            {
-                isPaused = false;
-            }
-            else if (!isPaused)
-            {
-                isPaused = true;
-            }
+            if (isPaused) isPaused = false;
+            else if (!isPaused) isPaused = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (bgMusic.mute == true) bgMusic.mute = false;
+            else if (bgMusic.mute == false) bgMusic.mute = true;
         }
     }
 
