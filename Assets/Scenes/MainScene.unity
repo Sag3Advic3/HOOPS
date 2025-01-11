@@ -2709,7 +2709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 2
-  throwingSpeed: 1000
+  throwingSpeed: 800
   groundDrag: 5
   timer: 180
   orientation: {fileID: 185669527}
