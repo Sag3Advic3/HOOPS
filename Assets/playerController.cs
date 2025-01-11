@@ -50,10 +50,17 @@ public class playerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //when colliding with the ball, pick it up
-        if (collision.gameObject.tag == "ball" && !isHoldingBall)
+        if (collision.gameObject.tag == "ball")
         {
-            isHoldingBall = true;
-            basketballRB.freezeRotation = true;
+            if (isHoldingBall)
+            {
+                Physics.IgnoreCollision(GetComponent<Collider>(), ball.GetComponent<Collider>());
+            }
+            else
+            {
+                isHoldingBall = true;
+                basketballRB.freezeRotation = true;
+            }
         }
 
     }
@@ -76,15 +83,9 @@ public class playerController : MonoBehaviour
             {
                 Time.timeScale = 0;
                 bgMusic.Pause();
-                //updatePauseMenu();
                 pauseMenu.gameObject.SetActive(true);
                 Cursor.visible = true;
             }
-    }
-
-    private void updatePauseMenu()
-    {
-        throw new NotImplementedException();
     }
 
 
