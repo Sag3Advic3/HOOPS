@@ -6,11 +6,8 @@ public class ballController : MonoBehaviour
 {
     public TMP_Text scoreText;
     public TMP_Text scorePauseText;
-    public TMP_Text timerText;
     public TMP_Text highScoreText;
-    public TMP_Text highScorePauseText;
     public AudioSource swish;
-    public float timer;
 
     private int scoreCount;
     private string highScore = "highScore";
@@ -26,10 +23,6 @@ public class ballController : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
-        TimeSpan clock = TimeSpan.FromSeconds(timer);
-        timerText.SetText(clock.ToString("mm':'ss"));
-
         isFalling = GetComponent<Rigidbody>().angularVelocity.y < 0 ? true : false;
 
         //press mouse right click to reset ball position to start
@@ -63,7 +56,6 @@ public class ballController : MonoBehaviour
                 PlayerPrefs.SetInt(highScore, scoreCount);
                 PlayerPrefs.Save();
                 highScoreText.SetText(PlayerPrefs.GetInt(highScore).ToString());
-                highScorePauseText.SetText(PlayerPrefs.GetInt(highScore).ToString());
             }
         }
         else
@@ -71,7 +63,6 @@ public class ballController : MonoBehaviour
             PlayerPrefs.SetInt(highScore, scoreCount);
             PlayerPrefs.Save();
             highScoreText.SetText(PlayerPrefs.GetInt(highScore).ToString());
-            highScorePauseText.SetText(PlayerPrefs.GetInt(highScore).ToString());
         }
     }
 }

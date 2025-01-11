@@ -61,10 +61,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.33f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\cameraHolderController.cs" />
-    <Compile Include="Assets\playerController.cs" />
-    <Compile Include="Assets\cameraController.cs" />
-    <Compile Include="Assets\ballController.cs" />
+    <Compile Include="Assets\Scripts\playerController.cs" />
+    <Compile Include="Assets\Scripts\cameraHolderController.cs" />
+    <Compile Include="Assets\Scripts\cameraController.cs" />
+    <Compile Include="Assets\Scripts\buttonController.cs" />
+    <Compile Include="Assets\Scripts\ballController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

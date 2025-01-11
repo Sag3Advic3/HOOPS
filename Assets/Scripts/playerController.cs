@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -6,16 +7,20 @@ public class playerController : MonoBehaviour
     public float playerSpeed;
     public float throwingSpeed;
     public float groundDrag;
+    public float timer;
     public Transform orientation;
     public Transform ball;
     public Transform holdBallPos;
     public Transform playerCam;
     public Transform pauseMenu;
     public AudioSource bgMusic;
+    public TMP_Text timerText;
+    public TMP_Text pauseMenuText;
 
     private float inputX;
     private float inputY;
     private bool isPaused;
+    private bool isGameOver;
 
     private bool isHoldingBall = false;
 
@@ -30,6 +35,7 @@ public class playerController : MonoBehaviour
         rb.freezeRotation = true;
         basketballRB = ball.GetComponent<Rigidbody>();
         isPaused = true;
+        isGameOver = false;
         pauseMenu.gameObject.SetActive(false);
     }
 
@@ -37,6 +43,7 @@ public class playerController : MonoBehaviour
     {
         getInputs();
         checkIfPaused();
+        updateTimer();
 
         //include drag so player movement is not slippery
         rb.linearDamping = groundDrag;
@@ -54,6 +61,7 @@ public class playerController : MonoBehaviour
         {
             if (isHoldingBall)
             {
+                //This addresses a bug where the two colliders meetin pushes the player backward
                 Physics.IgnoreCollision(GetComponent<Collider>(), ball.GetComponent<Collider>());
             }
             else
@@ -70,13 +78,22 @@ public class playerController : MonoBehaviour
         movePlayer();
     }
 
+    private void updateTimer()
+    {
+        timer -= Time.deltaTime;
+        TimeSpan clock = TimeSpan.FromSeconds(timer);
+        timerText.SetText(clock.ToString("mm':'ss"));
+        if (timer <= 0) gameOver();
+    }
+
     private void checkIfPaused()
     {
             if (isPaused)
             {
                 Time.timeScale = 1;
                 bgMusic.UnPause();
-                pauseMenu.gameObject.SetActive(false);
+                pauseMenu.gameObject.SetActive(false); 
+                Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
             else if (!isPaused)
@@ -84,6 +101,7 @@ public class playerController : MonoBehaviour
                 Time.timeScale = 0;
                 bgMusic.Pause();
                 pauseMenu.gameObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
     }
@@ -103,7 +121,7 @@ public class playerController : MonoBehaviour
         }
 
         //press space to pause the game
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isGameOver)
         {
             if (isPaused)
             {
@@ -120,5 +138,12 @@ public class playerController : MonoBehaviour
     {
         moveDir = (orientation.forward * inputY) + (orientation.right * inputX);
         rb.AddForce(moveDir.normalized * playerSpeed * 10f, ForceMode.Force);
+    }
+
+    public void gameOver()
+    {
+        pauseMenuText.SetText("G A M E   O V E R");
+        isGameOver = true;
+        isPaused = false;
     }
 }
