@@ -3,11 +3,11 @@ using TMPro;
 
 public class ballController : MonoBehaviour
 {
-    public TMP_Text scoreText;
-    public TMP_Text scorePauseText;
-    public TMP_Text highScoreText;
+    public TMP_Text scoreText, scorePauseText, highScoreText;
     public AudioSource swish;
+    public AudioSource highScoreAudio;
     public GameObject scorePoint;
+    public int startingHighScore;
 
     private int scoreCount;
     private string highScore = "highScore";
@@ -17,6 +17,13 @@ public class ballController : MonoBehaviour
     {
         scoreCount = 0;
         if(PlayerPrefs.HasKey(highScore)) highScoreText.SetText(PlayerPrefs.GetInt(highScore).ToString());
+        else
+        {
+            //preset high score
+            PlayerPrefs.SetInt(highScore, startingHighScore);
+            PlayerPrefs.Save();
+            highScoreText.SetText(PlayerPrefs.GetInt(highScore).ToString());
+        }
     }
 
     void Update()
@@ -33,7 +40,6 @@ public class ballController : MonoBehaviour
             scoreCount++;
             scoreText.SetText(scoreCount.ToString());
             scorePauseText.SetText(scoreCount.ToString());
-            swish.Play();
             checkHighScore();
         }
 
@@ -48,13 +54,16 @@ public class ballController : MonoBehaviour
                 PlayerPrefs.SetInt(highScore, scoreCount);
                 PlayerPrefs.Save();
                 highScoreText.SetText(PlayerPrefs.GetInt(highScore).ToString());
+                highScoreAudio.Play();
             }
+            else swish.Play();
         }
         else
         {
             PlayerPrefs.SetInt(highScore, scoreCount);
             PlayerPrefs.Save();
             highScoreText.SetText(PlayerPrefs.GetInt(highScore).ToString());
+            highScoreAudio.Play();
         }
     }
 }
