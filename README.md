@@ -1,7 +1,7 @@
 # HOOPS
 
 ## Description
-A first-person basketball game timed with a high score counter.
+A first-person basketball game timed with a high score counter. Developed in Unity using C#.
 
 ## Deployment Link
 [Click here to play](https://sag3advic3.github.io/HOOPS/)
