@@ -1,9 +1,10 @@
-# ReadME.md
-## Version 1.0.3
+# HOOPS
 
-Thanks for stopping by!
+## Description
+A first-person basketball game timed with a high score counter.
 
-This is a basketball game designed in Unity with C#.
+## Deployment Link
+[Click here to play](https://sag3advic3.github.io/HOOPS/)
 
 ### Features
 - Raycasted pick up of basketball object
@@ -17,4 +18,13 @@ This is a basketball game designed in Unity with C#.
 - Pause menu with controls in French and English
 - Ability to restart the game
 
-Please let me know what you think of this game! I always strive to get better and would love to hear your feedback!
+## Authors
+
+[@Sag3Advice](https://github.com/Sag3Advic3)
+
+## Version History
+
+* 0.2
+    * Updated controls to include ray-tracing
+* 0.1
+    * Initial Release
